@@ -25,11 +25,19 @@ GROUP BY county
 ORDER BY total DESC;
 
 -- 4. Year-over-year change in registrations per county
-SELECT 
+WITH yearly_totals AS (
+  SELECT 
     county,
     model_year,
-    COUNT(*) AS total,
-    COUNT(*) - LAG(COUNT(*)) OVER (PARTITION BY county ORDER BY model_year) AS yoy_change
-FROM vehicles
-GROUP BY county, model_year
+    COUNT(*) AS total
+  FROM vehicles
+  GROUP BY county, model_year
+)
+SELECT 
+  county,
+  model_year,
+  total,
+  total - LAG(total) OVER (PARTITION BY county ORDER BY model_year) AS yoy_change
+FROM yearly_totals
 ORDER BY county, model_year;
+
