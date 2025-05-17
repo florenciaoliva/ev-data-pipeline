@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load original dataset
-df = pd.read_csv("../data/electric_vehicle_population_raw.csv")
+df = pd.read_csv("data/electric_vehicle_population_raw.csv")
 
 # First rows
 print(" First rows:")
