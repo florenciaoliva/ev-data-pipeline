@@ -67,7 +67,7 @@ psql -U postgres -f sql/setup_database.sql
 
 ## **6. Load data into PostgreSQL**
 
-From the scripts folder, execute:
+Run:
 
 ```
 python scripts/load_to_postgres.py
