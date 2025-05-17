@@ -60,31 +60,9 @@ python scripts/clean.py
 
 Ensure that PostgreSQL is installed and the service is running.
 
-### Option 1: Using SQL commands in pgAdmin or psql
-
+Run:
 ```
--- Create the user
-CREATE USER ev_data_user WITH PASSWORD 'ev_password';
-
--- Create the database with the user as owner
-CREATE DATABASE ev_data WITH OWNER ev_data_user;
-```
-
-After connecting to the ev_data database, you may need to run:
-
-```
-GRANT ALL ON SCHEMA public TO ev_data_user;
-```
-
-### Option 2: Using command line
-
-```
-# Create user (interactive password prompt)
-createuser --pwprompt ev_data_user
-# When prompted, enter 'ev_password' as the password
-
-# Create database with owner
-createdb --owner=ev_data_user ev_data
+psql -U postgres -f sql/setup_database.sql
 ```
 
 ## **6. Load data into PostgreSQL**
